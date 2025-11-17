@@ -22,7 +22,6 @@ Landing page moderna, elegante e responsiva desenvolvida com **Next.js 16**, **T
 - Navegação suave com scroll interativo
 - Responsiva para mobile e desktop
 
-- 
 ## Como rodar
 ```bash
 npm install ou npm install --legacy-peer-deps 
