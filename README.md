@@ -2,6 +2,10 @@
 
 Landing page moderna, elegante e responsiva desenvolvida com **Next.js 16**, **Tailwind CSS 4**, animações premium e modo claro/escuro dinâmico.
 
+🌐 **Link de Produção**
+
+🔗 https://peter-gastrobar-landing.vercel.app/
+
 ## Tecnologias utilizadas
 - Next.js 16 (App Router)
 - Tailwind CSS 4
@@ -18,6 +22,7 @@ Landing page moderna, elegante e responsiva desenvolvida com **Next.js 16**, **T
 - Navegação suave com scroll interativo
 - Responsiva para mobile e desktop
 
+- 
 ## Como rodar
 ```bash
 npm install ou npm install --legacy-peer-deps 
