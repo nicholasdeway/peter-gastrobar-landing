@@ -4,7 +4,7 @@ Landing page moderna, elegante e responsiva desenvolvida com **Next.js 16**, **T
 
 🌐 **Link de Produção**
 
-🔗 https://peter-gastrobar-landing.vercel.app/
+🔗 [Peter Gastrobar](https://www.petergastrobar.com.br/)
 
 ## Tecnologias utilizadas
 - Next.js 16 (App Router)
