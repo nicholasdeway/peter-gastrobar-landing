@@ -14,9 +14,9 @@ const lato = Lato({
 })
 
 export const metadata: Metadata = {
-  title: 'Peter Gastrobar - Fine Dining Experience',
+  title: 'Peter Gastrobar - Experiência gastronômica requintada',
   description:
-    'Sabores autorais em um ambiente sofisticado. Discover our refined gastronomic experience.',
+    'Sabores autorais em um ambiente sofisticado. Descubra a nossa refinada experiência gastronômica.',
 
   icons: {
     icon: [
