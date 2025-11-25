@@ -57,7 +57,7 @@ export default function Footer() {
               <li>
                 <button 
                   onClick={() => handleFooterNavigation('about')}
-                  className="hover:text-background transition-colors"
+                  className="cursor-pointer hover:text-background transition-colors"
                 >
                   Sobre
                 </button>
@@ -65,7 +65,7 @@ export default function Footer() {
               <li>
                 <button 
                   onClick={() => handleFooterNavigation('menu')}
-                  className="hover:text-background transition-colors"
+                  className="cursor-pointer hover:text-background transition-colors"
                 >
                   Cardápio
                 </button>
@@ -73,7 +73,7 @@ export default function Footer() {
               <li>
                 <button 
                   onClick={() => handleFooterNavigation('gallery')}
-                  className="hover:text-background transition-colors"
+                  className="cursor-pointer hover:text-background transition-colors"
                 >
                   Galeria
                 </button>
@@ -81,7 +81,7 @@ export default function Footer() {
               <li>
                 <button 
                   onClick={() => handleFooterNavigation('location')}
-                  className="hover:text-background transition-colors"
+                  className="cursor-pointer hover:text-background transition-colors"
                 >
                   Localização
                 </button>
