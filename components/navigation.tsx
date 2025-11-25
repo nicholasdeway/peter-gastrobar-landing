@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
+import { motion } from 'framer-motion'
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
@@ -16,25 +17,16 @@ export default function Navigation() {
     if (isHomePage) {
       const element = document.getElementById(section)
       if (element) {
-        element.scrollIntoView({ 
-          behavior: 'smooth',
-          block: 'start'
-        })
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
       }
     } else if (isCardapioPage && section === 'menu') {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      })
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     } else {
       router.push('/')
       setTimeout(() => {
         const element = document.getElementById(section)
         if (element) {
-          element.scrollIntoView({ 
-            behavior: 'smooth',
-            block: 'start'
-          })
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' })
         }
       }, 100)
     }
@@ -50,9 +42,16 @@ export default function Navigation() {
   ]
 
   return (
-    <nav className="fixed top-0 w-full bg-background/80 backdrop-blur-md z-50 border-b border-border">
+    <motion.nav
+      initial={{ y: -20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.4, ease: 'easeOut' }}
+      className="fixed top-0 w-full bg-background/70 backdrop-blur-xl z-50 border-b border-border"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
+          
+          {/* Logo */}
           <Link 
             href="/" 
             className="text-2xl font-display font-bold text-primary hover:text-primary/80 transition-colors"
@@ -66,22 +65,34 @@ export default function Navigation() {
               <button
                 key={item.label}
                 onClick={() => handleNavigation(item.section)}
-                className="cursor-pointer text-sm text-foreground/70 hover:text-primary transition-colors"
+                className="
+                  cursor-pointer text-sm text-foreground/70 hover:text-primary transition-colors
+                  relative after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 
+                  after:bg-primary after:transition-all after:duration-300 hover:after:w-full
+                "
               >
                 {item.label}
               </button>
             ))}
           </div>
 
+          {/* Right side */}
           <div className="hidden md:flex gap-3">
-            <Link href="/cardapio" className="text-sm text-foreground/70 hover:text-primary transition-colors">
+            <Link 
+              href="/cardapio" 
+              className="
+                text-sm text-foreground/70 hover:text-primary transition-colors
+                relative after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 
+                after:bg-primary after:transition-all after:duration-300 hover:after:w-full
+              "
+            >
               Menu Completo
             </Link>
           </div>
 
           {/* Mobile menu button */}
           <button
-            className="md:hidden"
+            className="md:hidden cursor-pointer"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -90,7 +101,12 @@ export default function Navigation() {
 
         {/* Mobile menu */}
         {isOpen && (
-          <div className="md:hidden pb-4 border-t border-border">
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            className="md:hidden pb-4 border-t border-border"
+          >
             {navItems.map((item) => (
               <button
                 key={item.label}
@@ -109,9 +125,9 @@ export default function Navigation() {
                 Menu Completo
               </Link>
             </div>
-          </div>
+          </motion.div>
         )}
       </div>
-    </nav>
+    </motion.nav>
   )
 }
