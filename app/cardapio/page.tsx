@@ -8,6 +8,7 @@ import ThemeToggle from '@/components/theme-toggle'
 import { menuData } from '@/data/menu'
 import MenuCategoryComponent from '@/components/menu-category'
 import { usePathname } from 'next/navigation'
+import { motion } from 'framer-motion'
 
 export default function CardapioPage() {
   const [activeCategory, setActiveCategory] = useState<string>(menuData[0].id)
@@ -65,8 +66,18 @@ export default function CardapioPage() {
       <ThemeToggle />
 
       {/* Hero Section */}
-      <section className="pt-24 pb-12 px-4 bg-gradient-to-b from-secondary/30 to-background">
-        <div className="max-w-6xl mx-auto text-center fade-in">
+      <motion.section
+        className="pt-24 pb-12 px-4 bg-gradient-to-b from-secondary/30 to-background"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+      >
+        <motion.div
+          className="max-w-6xl mx-auto text-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.7, delay: 0.1, ease: 'easeOut' }}
+        >
           <Link
             href="/"
             className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mb-4 font-medium"
@@ -74,16 +85,32 @@ export default function CardapioPage() {
             <ArrowLeft size={18} />
             Voltar ao início
           </Link>
-          <h1 className="text-5xl md:text-6xl font-display font-bold text-foreground mb-4 text-balance">
+          <motion.h1
+            className="text-5xl md:text-6xl font-display font-bold text-foreground mb-4 text-balance"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.7, delay: 0.15, ease: 'easeOut' }}
+          >
             Cardápio
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          </motion.h1>
+          <motion.p
+            className="text-lg text-muted-foreground max-w-2xl mx-auto"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.7, delay: 0.25, ease: 'easeOut' }}
+          >
             Explore nosso cardápio completo de entradas, petiscos, pratos, drinks e sobremesas.
-          </p>
-        </div>
-      </section>
+          </motion.p>
+        </motion.div>
+      </motion.section>
 
-      <section className="sticky top-16 bg-background/95 backdrop-blur-sm border-b border-border z-40 py-4 px-4">
+      {/* Category Tabs */}
+      <motion.section
+        className="sticky top-16 bg-background/95 backdrop-blur-sm border-b border-border z-40 py-4 px-4"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.2, ease: 'easeOut' }}
+      >
         <div className="max-w-6xl mx-auto">
           <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0 md:flex-wrap justify-start md:justify-center">
             {menuData.map((category) => (
@@ -92,7 +119,7 @@ export default function CardapioPage() {
                 onClick={() => handleCategoryClick(category.id)}
                 className={`cursor-pointer px-4 py-2 rounded-full whitespace-nowrap transition-colors text-sm font-medium ${
                   activeCategory === category.id
-                    ? 'bg-primary text-primary-foreground'
+                    ? 'bg-primary text-primary-foreground shadow-sm'
                     : 'bg-secondary text-foreground hover:bg-secondary/80'
                 }`}
               >
@@ -101,15 +128,22 @@ export default function CardapioPage() {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Menu Content */}
       <section className="py-12 px-4">
         <div className="max-w-6xl mx-auto">
-          {menuData.map((category) => (
-            <div key={category.id} id={category.id} className="mb-12 fade-in-up scroll-mt-32">
+          {menuData.map((category, index) => (
+            <motion.div
+              key={category.id}
+              id={category.id}
+              className="mb-12 scroll-mt-32"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.1 + index * 0.05, ease: 'easeOut' }}
+            >
               <MenuCategoryComponent category={category} />
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>

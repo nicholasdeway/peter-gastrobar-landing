@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const menuCategories = [
   {
@@ -134,9 +135,23 @@ export default function Menu() {
   const currentCategory = menuCategories.find((cat) => cat.id === activeCategory)
 
   return (
-    <section id="menu" className="py-20 bg-background">
+    <motion.section
+      id="menu"
+      className="py-20 bg-background"
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+    >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        {/* Header */}
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
+        >
           <p className="text-primary text-sm tracking-widest uppercase mb-4">
             Seleção Culinária
           </p>
@@ -146,47 +161,75 @@ export default function Menu() {
           <p className="text-foreground/60 max-w-2xl mx-auto text-lg">
             Cada prato é cuidadosamente preparado com ingredientes premium e técnicas refinadas
           </p>
-        </div>
+        </motion.div>
 
         {/* Category tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
+        <motion.div
+          className="flex flex-wrap justify-center gap-2 mb-12"
+          initial={{ opacity: 0, y: 8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
+        >
           {menuCategories.map((category) => (
             <button
               key={category.id}
               onClick={() => setActiveCategory(category.id)}
               className={`cursor-pointer px-6 py-2 rounded-full text-sm font-medium transition-all ${
                 activeCategory === category.id
-                  ? 'bg-primary text-primary-foreground'
+                  ? 'bg-primary text-primary-foreground shadow-md'
                   : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
               }`}
             >
               {category.name}
             </button>
           ))}
-        </div>
+        </motion.div>
 
-        {/* Menu items grid */}
-        <div className="grid md:grid-cols-2 gap-8">
-          {currentCategory?.items.map((item, idx) => (
-            <Card
-              key={idx}
-              className="p-6 hover:shadow-lg transition-shadow border-0 bg-card"
-            >
-              <div className="flex justify-between items-start mb-2">
-                <h3 className="text-xl font-display font-semibold text-foreground">
-                  {item.name}
-                </h3>
-                <span className="text-primary font-semibold whitespace-nowrap ml-4">
-                  {item.price}
-                </span>
-              </div>
-              <p className="text-foreground/60 leading-relaxed">{item.description}</p>
-            </Card>
-          ))}
-        </div>
+        {/* Menu items grid com transição entre categorias */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeCategory}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.35, ease: 'easeOut' }}
+            className="grid md:grid-cols-2 gap-8"
+          >
+            {currentCategory?.items.map((item, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: idx * 0.05, ease: 'easeOut' }}
+                whileHover={{ y: -4 }}
+              >
+                <Card className="p-6 hover:shadow-xl transition-shadow border-0 bg-card/95">
+                  <div className="flex justify-between items-start mb-2">
+                    <h3 className="text-xl font-display font-semibold text-foreground">
+                      {item.name}
+                    </h3>
+                    <span className="text-primary font-semibold whitespace-nowrap ml-4">
+                      {item.price}
+                    </span>
+                  </div>
+                  <p className="text-foreground/60 leading-relaxed">
+                    {item.description}
+                  </p>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
 
         {/* CTA: Ver cardápio completo */}
-        <div className="mt-12 flex justify-center">
+        <motion.div
+          className="mt-12 flex justify-center"
+          initial={{ opacity: 0, y: 8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
+        >
           <Link href="/cardapio">
             <Button
               size="lg"
@@ -195,8 +238,8 @@ export default function Menu() {
               Ver cardápio completo
             </Button>
           </Link>
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   )
 }
