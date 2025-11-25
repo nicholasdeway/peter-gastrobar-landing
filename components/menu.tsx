@@ -154,7 +154,7 @@ export default function Menu() {
             <button
               key={category.id}
               onClick={() => setActiveCategory(category.id)}
-              className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
+              className={`cursor-pointer px-6 py-2 rounded-full text-sm font-medium transition-all ${
                 activeCategory === category.id
                   ? 'bg-primary text-primary-foreground'
                   : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
@@ -190,7 +190,7 @@ export default function Menu() {
           <Link href="/cardapio">
             <Button
               size="lg"
-              className="bg-primary text-primary-foreground hover:bg-primary/90"
+              className="cursor-pointer bg-primary text-primary-foreground hover:bg-primary/90"
             >
               Ver cardápio completo
             </Button>

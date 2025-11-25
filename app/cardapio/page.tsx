@@ -90,7 +90,7 @@ export default function CardapioPage() {
               <button
                 key={category.id}
                 onClick={() => handleCategoryClick(category.id)}
-                className={`px-4 py-2 rounded-full whitespace-nowrap transition-colors text-sm font-medium ${
+                className={`cursor-pointer px-4 py-2 rounded-full whitespace-nowrap transition-colors text-sm font-medium ${
                   activeCategory === category.id
                     ? 'bg-primary text-primary-foreground'
                     : 'bg-secondary text-foreground hover:bg-secondary/80'

@@ -57,7 +57,7 @@ export default function Location() {
             >
               <Button
                 size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 w-full md:w-auto"
+                className="cursor-pointer bg-primary text-primary-foreground hover:bg-primary/90 w-full md:w-auto"
               >
                 Reservar pelo Instagram
               </Button>
@@ -97,7 +97,7 @@ export default function Location() {
               >
                 <Button
                   size="lg"
-                  className="bg-primary text-primary-foreground hover:bg-primary/90 w-full md:w-auto"
+                  className="cursor-pointer bg-primary text-primary-foreground hover:bg-primary/90 w-full md:w-auto"
                 >
                   Abrir rota no Google Maps
                 </Button>

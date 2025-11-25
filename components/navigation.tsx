@@ -14,7 +14,6 @@ export default function Navigation() {
 
   const handleNavigation = (section: string) => {
     if (isHomePage) {
-      // Scroll suave na homepage
       const element = document.getElementById(section)
       if (element) {
         element.scrollIntoView({ 
@@ -23,15 +22,12 @@ export default function Navigation() {
         })
       }
     } else if (isCardapioPage && section === 'menu') {
-      // Se está na página cardápio e clicou em "Cardápio", faz scroll para o topo
       window.scrollTo({
         top: 0,
         behavior: 'smooth'
       })
     } else {
-      // Redireciona para homepage SEM hash na URL
       router.push('/')
-      // Aguarda a navegação e depois faz scroll
       setTimeout(() => {
         const element = document.getElementById(section)
         if (element) {
@@ -70,7 +66,7 @@ export default function Navigation() {
               <button
                 key={item.label}
                 onClick={() => handleNavigation(item.section)}
-                className="text-sm text-foreground/70 hover:text-primary transition-colors"
+                className="cursor-pointer text-sm text-foreground/70 hover:text-primary transition-colors"
               >
                 {item.label}
               </button>
@@ -99,7 +95,7 @@ export default function Navigation() {
               <button
                 key={item.label}
                 onClick={() => handleNavigation(item.section)}
-                className="block w-full text-left py-2 text-foreground/70 hover:text-primary transition-colors"
+                className="cursor-pointer block w-full text-left py-2 text-foreground/70 hover:text-primary transition-colors"
               >
                 {item.label}
               </button>
